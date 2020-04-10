@@ -19,7 +19,10 @@ magic.py
                            'filename' contains.
 '''
 
-import re, struct, string
+import re
+import string
+import struct
+import sys
 
 __version__ = '0.2'
 
@@ -1178,7 +1181,6 @@ def file(file):
 #  f.write(str([m.offset, m.type, m.op, m.value, m.msg]) + ',\n')
 #f.close
 
-import sys
 for m in magic:
   magicNumbers.append(magicTest(m[0], m[1], m[2], m[3], m[4]))
 
