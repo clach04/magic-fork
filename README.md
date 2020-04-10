@@ -8,6 +8,12 @@ https://pypi.org/project/magic/ (as of 2020-04) has dead links and has not been 
 
 Alternatives to this pure python file magic implementation are the various libmagic wrappers and file wrapper. See https://bbs.archlinux.org/viewtopic.php?id=240109 for some background.
 
+There are other forks of magic.py but they are Python 2 only and are part of a larger tool and can not be used standalone:
+
+  * https://github.com/autotest/autotest/blob/master/client/shared/magic.py
+      * https://chromium.googlesource.com/chromiumos/third_party/autotest/+/master/client/common_lib/magic.py (fork of the above)
+
+
 There is a similar but different metadata system at https://github.com/floyernick/fleep-py - its Python 3 only and more information is available at https://hackernoon.com/determining-file-format-using-python-c4e7b18d4fc4
 
 Alternative metadata systems (no Python implementations):
