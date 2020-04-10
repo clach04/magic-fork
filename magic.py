@@ -1159,9 +1159,9 @@ def whatis(data):
   return 'ASCII text'
       
     
-def file(file):
+def file(filename):
   try:
-    f = open(file, 'rb')
+    f = open(filename, 'rb')
     data = f.read(8192)
     return whatis(data)
   except Exception as e:
