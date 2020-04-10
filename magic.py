@@ -1185,7 +1185,6 @@ for m in magic:
   magicNumbers.append(magicTest(m[0], m[1], m[2], m[3], m[4]))
 
 if __name__ == '__main__':
-  import sys
   for arg in sys.argv[1:]:
     msg = file(arg)
     if msg:
