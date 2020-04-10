@@ -946,6 +946,7 @@ magic = [
     [0, 'string', '=', b'ZyXEL\x02', 'ZyXEL voice data']
 ]
 
+
 magicNumbers = []
 
 try:
@@ -1046,12 +1047,7 @@ class magicTest:
     #print str([self.type, self.value, self.msg])
     try: 
       if self.type == 'string':
-        c = ''; s = ''
-        for i in range(0, len(self.value)+1):
-          if i + self.offset > len(data) - 1: break
-          s = s + c
-          [c] = struct.unpack('c', data[self.offset + i])
-        data = s
+        data = data[:len(self.value)]  # extract exact byte length for signature "string" (byte) compare
       elif self.type == 'short':
         [data] = struct.unpack('h', data[self.offset : self.offset + 2])
       elif self.type == 'leshort':
@@ -1067,7 +1063,7 @@ class magicTest:
       else:
         #print 'UNKNOWN TYPE: ' + self.type
         pass
-    except:
+    except:  # FIXME this is dumb
       return None
   
 #    print str([self.msg, self.value, data])
@@ -1135,9 +1131,10 @@ def load(file):
         else:
           if value.count('&') != 0:
             mask = value[(value.index('&') + 1):]
+            #print('MASK: ' + mask)  # old code from original upstream
             value = value[:(value.index('&')+1)]
           try: value = strToNum(value)
-          except: continue
+          except: continue  # FIXME dumb
         msg = string.join(list(line[3:]))
         new = magicTest(offset, type, op, value, msg, mask)
         last[level] = new
