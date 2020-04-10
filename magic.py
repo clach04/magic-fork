@@ -1071,6 +1071,7 @@ class magicTest:
     return self.test(data)
     
 
+# FIXME document
 def load(file):
   global magicNumbers
   lines = open(file).readlines()
@@ -1170,6 +1171,7 @@ def file(file):
   
 
 #### BUILD DATA ####
+# FIXME implement and make Python 3 aware with byte literals
 #load('mime-magic')
 #f = open('out', 'w')
 #for m in magicNumbers:
