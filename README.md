@@ -1,12 +1,23 @@
 # magic-fork
 
+https://github.com/clach04/magic-fork/
+
 Python 3 and 2 version of Jason Petrone's magic.py
 
 Pure python implemenation of file magic identification using Unix standard
 metadata https://www.freebsd.org/cgi/man.cgi?query=magic&sektion=5
 There are no tests and documentation for this is not present.
 
-https://pypi.org/project/magic/ (as of 2020-04) has dead links and has not been updated.
+Example:
+
+    >python magic.py magic.py
+    magic.py: application/x-python
+
+    >py -3 magic.py magic.py
+    magic.py: application/x-python
+
+
+https://pypi.org/project/magic/ (as of 2020-04) has dead links and has not been updated which is why this fork exists.
 
 Alternatives to this pure python file magic implementation are the various libmagic wrappers and file wrapper. See https://bbs.archlinux.org/viewtopic.php?id=240109 for some background.
 
