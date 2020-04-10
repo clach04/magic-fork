@@ -2,7 +2,9 @@
 
 Python 3 and 2 version of Jason Petrone's magic.py
 
-Pure python implemenation of file magic identification using Unix standard metadata https://www.freebsd.org/cgi/man.cgi?query=magic&sektion=5 
+Pure python implemenation of file magic identification using Unix standard
+metadata https://www.freebsd.org/cgi/man.cgi?query=magic&sektion=5
+There are no tests and documentation for this is not present.
 
 https://pypi.org/project/magic/ (as of 2020-04) has dead links and has not been updated.
 
