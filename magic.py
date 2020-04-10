@@ -1157,12 +1157,16 @@ def whatis(data):
     
 def file(file):
   try:
-    return whatis(open(file, 'rb').read(8192))
+    f = open(file, 'rb')
+    data = f.read(8192)
+    return whatis(data)
   except Exception as e:
     if str(e) == '[Errno 21] Is a directory':
       return 'directory'
     else:
       raise e
+  finally:
+    f.close()
   
 
 #### BUILD DATA ####
