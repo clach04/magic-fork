@@ -30,6 +30,8 @@ There are other forks of magic.py but they are Python 2 only and are part of a l
 
 There is a similar but different metadata system at https://github.com/floyernick/fleep-py - its Python 3 only and more information is available at https://hackernoon.com/determining-file-format-using-python-c4e7b18d4fc4
 
+Windows only, includes a python extension https://mark0.net/code-tridlib-e.html
+
 Alternative metadata systems (no Python implementations):
 
   * https://www.nationalarchives.gov.uk/information-management/manage-information/preserving-digital-records/droid/
