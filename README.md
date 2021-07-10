@@ -34,6 +34,7 @@ Windows only, includes a python extension https://mark0.net/code-tridlib-e.html
 
 Alternative metadata systems (no Python implementations):
 
+  * https://github.com/wbond/puremagic Lua (hard coded, no metadata database)
   * https://www.nationalarchives.gov.uk/information-management/manage-information/preserving-digital-records/droid/
   * https://www.garykessler.net/library/file_sigs.html
       * https://www.garykessler.net/software/index.html#filesigs
