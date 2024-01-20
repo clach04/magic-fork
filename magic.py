@@ -11,7 +11,7 @@ magic.py
                      a description of what 'file' is.
 
  Module Usage:
-     magic.whatis(data): when passed a string 'data' containing 
+     magic.whatis(data): when passed a string 'data' containing
                          binary or text data, a description of
                          what the data is will be returned.
 
@@ -26,6 +26,7 @@ import sys
 
 __version__ = '0.2'
 
+# pre-canned magic signatures
 magic = [
     [0, 'leshort', '=', 1538, 'application/x-alan-adventure-game'],
     [0, 'string', '=', b'TADS', 'application/x-tads-game'],
@@ -947,7 +948,7 @@ magic = [
 ]
 
 
-magicNumbers = []
+magicNumbers = []  # list/array of magicTest() class
 
 try:
   long
@@ -978,14 +979,14 @@ def strToNum(n):
   else:
     val = int(n)
   return val
-       
+
 def unescape(s):
   # replace string escape sequences
   while 1:
     m = re.search(r'\\', s)
     if not m: break
     x = m.start()+1
-    if m.end() == len(s): 
+    if m.end() == len(s):
       # escaped space at end
       s = s[:len(s)-1] + ' '
     elif s[x:x+2] == '0x':
@@ -1014,7 +1015,7 @@ def unescape(s):
 class magicTest:
   def __init__(self, offset, t, op, value, msg, mask = None):
     if t.count('&') > 0:
-      mask = strToNum(t[t.index('&')+1:])  
+      mask = strToNum(t[t.index('&')+1:])
       t = t[:t.index('&')]
     if type(offset) == type('a'):
       self.offset = strToNum(offset)
@@ -1026,12 +1027,15 @@ class magicTest:
     self.op = op
     self.mask = mask
     self.value = value
-      
+
+  def __repr__(self):
+    return '>%s< %r %r %r %r %r' % (self.msg, self.offset, self.type, self.op, self.value, self.mask)
 
   def test(self, data):
+    #import pdb; pdb.set_trace()
     if self.mask:
       data = data & self.mask
-    if self.op == '=': 
+    if self.op == '=':
       if self.value == data: return self.msg
     elif self.op ==  '<':
       pass
@@ -1045,9 +1049,11 @@ class magicTest:
 
   def compare(self, data):
     #print str([self.type, self.value, self.msg])
-    try: 
+    try:
       if self.type == 'string':
-        data = data[:len(self.value)]  # extract exact byte length for signature "string" (byte) compare
+        #import pdb; pdb.set_trace()
+        #data = data[:len(self.value)]  # extract exact byte length for signature "string" (byte) compare
+        data = data[self.offset:self.offset + len(self.value)]  # extract exact byte length for signature "string" (byte) compare
       elif self.type == 'short':
         [data] = struct.unpack('h', data[self.offset : self.offset + 2])
       elif self.type == 'leshort':
@@ -1065,13 +1071,13 @@ class magicTest:
         pass
     except:  # FIXME this is dumb
       return None
-  
+
 #    print str([self.msg, self.value, data])
     return self.test(data)
-    
 
-# FIXME document
-def load(file):
+
+# FIXME document - loads (text) magic file defs and appends to magicNumbers
+def load(file):  # where file is a filename
   global magicNumbers
   lines = open(file).readlines()
   last = { 0: None }
@@ -1081,6 +1087,7 @@ def load(file):
       continue
     else:
       # split up by space delimiters, and remove trailing space
+      #if line.strip(): print('DEBUG line:%r' % line)
       line = string.rstrip(line)
       line = re.split(r'\s*', line)
       if len(line) < 3:
@@ -1090,11 +1097,14 @@ def load(file):
       type = line[1]
       value = line[2]
       level = 0
+      #print('\tDEBUG last:%r' % (last,))
+      #print('\tDEBUG line:%r' % ((offset, type, value, level),))
       while offset[0] == '>':
         # count the level of the type
         level = level + 1
         offset = offset[1:]
       l = magicNumbers
+      #print('\t\tDEBUG line:%r' % ((offset, type, value, level),))
       if level > 0:
         l = last[level - 1].subTests
       if offset[0] == '(':
@@ -1109,7 +1119,7 @@ def load(file):
         operands = ['=', '<', '>', '&']
         if operands.count(value[0]) > 0:
           # a comparison operator is specified
-          op = value[0] 
+          op = value[0]
           value = value[1:]
         else:
           print(str([value, operands]))
@@ -1154,8 +1164,8 @@ def whatis(data):
   if string.find('def', data, 0, 8192) > -1:
     return 'Python Source'
   return 'ASCII text'
-      
-    
+
+
 def file(filename):
   try:
     f = open(filename, 'rb')
@@ -1168,7 +1178,7 @@ def file(filename):
       raise e
   finally:
     f.close()
-  
+
 
 #### BUILD DATA ####
 # FIXME implement and make Python 3 aware with byte literals
@@ -1188,3 +1198,4 @@ if __name__ == '__main__':
       print(arg + ': ' + msg)
     else:
       print(arg + ': unknown')
+
