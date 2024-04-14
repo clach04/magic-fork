@@ -5,7 +5,7 @@ https://github.com/clach04/magic-fork/
 Python 3 and 2 version of Jason Petrone's magic.py
 
 Pure python implemenation of file magic identification using Unix standard
-metadata magic.mgc files (https://github.com/freebsd/freebsd/tree/master/contrib/file/magic/Magdir) for the Unix `file` command  https://www.freebsd.org/cgi/man.cgi?query=magic&sektion=5
+metadata magic.mgc files (https://github.com/freebsd/freebsd/tree/master/contrib/file/magic/Magdir) for the Unix [`file`](https://github.com/file/file) command  https://www.freebsd.org/cgi/man.cgi?query=magic&sektion=5
 
 WARNING There are no tests nor documentation.
 
