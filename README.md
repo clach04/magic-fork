@@ -27,6 +27,7 @@ There are other forks of magic.py but they are Python 2 only and are part of a l
   * https://github.com/autotest/autotest/blob/master/client/shared/magic.py
       * https://chromium.googlesource.com/chromiumos/third_party/autotest/+/master/client/common_lib/magic.py (fork of the above)
 
+## Other Resources
 
 There is a similar but different metadata system at https://github.com/floyernick/fleep-py - its Python 3 only and more information is available at https://hackernoon.com/determining-file-format-using-python-c4e7b18d4fc4
 
@@ -41,3 +42,7 @@ Alternative metadata systems (no Python implementations):
   * https://en.wikipedia.org/wiki/List_of_file_signatures
   * https://filesignatures.net/
       * https://cysecguide.blogspot.com/2017/12/file-signature-and-file-magic-number.html
+
+### Docs and Specs
+
+  * https://mimesniff.spec.whatwg.org/ mimetyoe sniffing spec and best-practices
