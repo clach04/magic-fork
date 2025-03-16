@@ -45,4 +45,4 @@ Alternative metadata systems (no Python implementations):
 
 ### Docs and Specs
 
-  * https://mimesniff.spec.whatwg.org/ mimetyoe sniffing spec and best-practices
+  * https://mimesniff.spec.whatwg.org/ mimetype sniffing spec and best-practices
